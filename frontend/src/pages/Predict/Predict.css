@@ -1,0 +1,113 @@
+.predict-page {
+  min-height: 100vh;
+  padding: 100px 20px 60px;
+  background: #000000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;   /* TRUE vertical centering */
+}
+
+/* Header */
+
+.predict-header {
+  text-align: center;
+  color: #fff;
+  margin-bottom: 50px;
+  max-width: 800px;
+}
+
+.predict-header h1 {
+  font-size: clamp(32px, 5vw, 56px);
+  margin-bottom: 16px;
+}
+
+.predict-header p {
+  font-size: clamp(14px, 2vw, 18px);
+  opacity: 0.85;
+  line-height: 1.6;
+}
+
+/* Card */
+
+.predict-card {
+  width: 50%;
+  max-width: 950px;      /* Keeps it centered and elegant */
+  padding: clamp(25px, 4vw, 50px);
+  border-radius: 32px;
+  background: rgba(255, 255, 255, 0.043);
+  backdrop-filter: blur(25px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Feature Layout */
+
+.feature-row {
+  margin-bottom: 40px;
+}
+
+.feature-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.feature-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.feature-label {
+  font-size: clamp(16px, 2vw, 20px);
+  color: #fff;
+  font-weight: 500;
+}
+
+.feature-value {
+  padding: 8px 18px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+  font-size: clamp(12px, 1.8vw, 14px);
+}
+
+/* Button */
+
+.predict-btn {
+  width: 100%;
+  padding: 16px;
+  border-radius: 100px;
+  border: none;
+  background: #4b041eff;
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.predict-btn:hover {
+  transform: translateY(-2px);
+}
+@media (max-width: 768px) {
+  .feature-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .feature-value {
+    align-self: flex-end;
+  }
+
+  .predict-card {
+    border-radius: 20px;
+  }
+}
+
+h2{
+    color: rgb(255, 255, 255);
+    font-family: 'Zalando Sans Expanded', zola, sans-serif;;
+}

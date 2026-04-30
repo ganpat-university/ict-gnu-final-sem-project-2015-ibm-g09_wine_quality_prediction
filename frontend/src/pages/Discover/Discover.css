@@ -1,0 +1,288 @@
+.discover-page {
+  min-height: 100vh;
+  background-color: #0f0f0f;
+  color: white;
+  padding: 120px 40px 60px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.discover-hero {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.discover-hero h1 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-bottom: 15px;
+  letter-spacing: -0.02em;
+}
+
+.discover-hero p {
+  color: #a0a0a0;
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin: 0 auto 40px;
+}
+
+.search-bar-container {
+  display: flex;
+  gap: 15px;
+  max-width: 800px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 8px;
+  border-radius: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.search-input-wrapper {
+  flex: 1;
+  display: flex;
+  items-center: center;
+  padding-left: 20px;
+  gap: 12px;
+}
+
+.search-icon {
+  color: #760707;
+}
+
+.search-input-wrapper input {
+  background: transparent;
+  border: none;
+  color: white;
+  width: 100%;
+  padding: 12px 0;
+  font-size: 1rem;
+  outline: none;
+}
+
+.search-input-wrapper input::placeholder {
+  color: #666;
+}
+
+.filter-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #760707;
+  color: white;
+  border: none;
+  padding: 0 25px;
+  border-radius: 40px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.filter-btn:hover {
+  background: #900a0a;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(118, 7, 7, 0.3);
+}
+
+.discover-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 30px;
+}
+
+.wine-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 24px;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.wine-card:hover {
+  border-color: rgba(118, 7, 7, 0.3);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.wine-image-container {
+  position: relative;
+  height: 250px;
+  overflow: hidden;
+}
+
+.wine-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.wine-card:hover .wine-image-container img {
+  transform: scale(1.1);
+}
+
+.wine-overlay {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  opacity: 0;
+  transform: translateX(10px);
+  transition: all 0.3s ease;
+}
+
+.wine-card:hover .wine-overlay {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.icon-btn {
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: white;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  backdrop-filter: blur(5px);
+  transition: all 0.2s ease;
+}
+
+.icon-btn:hover {
+  background: #760707;
+  border-color: #760707;
+}
+
+.quality-badge {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  background: #760707;
+  color: white;
+  padding: 6px 15px;
+  border-radius: 30px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.wine-info {
+  padding: 25px;
+}
+
+.wine-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+
+.wine-header h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.wine-rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.wine-region {
+  color: #760707;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.wine-desc {
+  color: #999;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 25px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.wine-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.wine-price {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: white;
+}
+
+.details-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: #aaa;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 10px 20px;
+  border-radius: 15px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.details-btn:hover {
+  color: white;
+  border-color: white;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+@media (max-width: 768px) {
+  .discover-page {
+    padding: 100px 20px 40px;
+  }
+  
+  .discover-hero h1 {
+    font-size: 2.5rem;
+  }
+  
+  .search-bar-container {
+    flex-direction: column;
+    background: transparent;
+    border: none;
+    padding: 0;
+    gap: 10px;
+  }
+  
+  .search-input-wrapper {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 40px;
+    padding: 5px 20px;
+  }
+  
+  .filter-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 15px 0;
+  }
+  
+  .discover-grid {
+    grid-template-columns: 1fr;
+  }
+}

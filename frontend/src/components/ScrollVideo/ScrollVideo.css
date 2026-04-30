@@ -1,0 +1,233 @@
+@import url('https://fonts.googleapis.com/css2?family=Zalando+Sans+Expanded:ital,wght@0,200..900;1,200..900&display=swap');
+
+:root {
+	--font-primary: 'Zalando Sans Expanded', zola, sans-serif;
+	--color-white: rgb(255, 255, 255);
+	--color-cherry: #760707;
+	--spacing-sm: 0.5rem;
+	--spacing-md: 1rem;
+	--spacing-lg: 2rem;
+	--spacing-xl: 6rem;
+	--spacing-hero: 7rem;
+	--spacing-nav: 8rem;
+	--z-video: 1;
+	--z-text: 2;
+	--z-nav: 3;
+}
+
+.scroll-video-container {
+	height: 500vh;
+	position: relative;
+}
+
+.scroll-video-canvas {
+	position: sticky;
+	top: 0;
+	width: 100vw;
+	height: 100vh;
+	z-index: var(--z-video);
+	object-fit: cover;
+}
+
+.scroll-video-text-block {
+	position: sticky;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: center;
+	z-index: var(--z-text);
+	pointer-events: none;
+	padding-left: var(--spacing-xl);
+}
+
+.scroll-video-text-left {
+	font-family: var(--font-primary);
+	color: var(--color-white);
+	font-size: var(--spacing-hero);
+	letter-spacing: -10px;
+	font-weight: 900;
+	margin: 0;
+	padding: 0;
+}
+
+.scroll-video-para {
+	max-width: 40%;
+	font-size: 1rem;
+	color: var(--color-white);
+	line-height: 1.6;
+	margin-top: var(--spacing-md);
+	font-family: var(--font-primary);
+	margin: 0;
+	padding: 0;
+}
+
+.scroll-video-cta {
+	margin-top: var(--spacing-lg);
+	pointer-events: auto;
+}
+
+.predict-cta-btn {
+	display: inline-block;
+	padding: 1rem 2.5rem;
+	color: white;
+	text-decoration: none;
+	font-family: var(--font-primary);
+	font-weight: 800;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	font-size: 0.9rem;
+	border-radius: 100px;
+	transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.predict-cta-btn:hover {
+	transform: translateY(-5px) scale(1.05);
+	box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+	filter: brightness(1.2);
+}
+
+.predict-cta-btn:active {
+	transform: translateY(-2px);
+}
+
+.scroll-video-lower {
+	font-size: 1.2rem;
+	color: rgba(255, 255, 255, 0.8);
+	margin-top: var(--spacing-md);
+	font-family: var(--font-primary);
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	margin: 0;
+	padding: 0;
+}
+
+.scroll-video-text-right {
+	position: sticky;
+	top: 0;
+	right: var(--spacing-xl);
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	justify-content: center;
+	z-index: var(--z-text);
+	pointer-events: none;
+	font-family: var(--font-primary);
+	color: var(--color-cherry);
+	font-size: var(--spacing-hero);
+	font-weight: 900;
+	margin: 0;
+	padding: 0;
+	text-align: right;
+}
+
+/* Right-side Variant Navigation */
+.scroll-video-variant-nav {
+	position: absolute;
+	top: 50%;
+	right: var(--spacing-nav);
+	transform: translateY(-50%);
+	z-index: var(--z-nav);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: var(--spacing-lg);
+	pointer-events: auto;
+}
+
+.variant-index {
+	font-size: 4rem;
+	font-weight: 900;
+	letter-spacing: -1px;
+	color: var(--color-white);
+	line-height: 1;
+	font-family: var(--font-primary);
+}
+
+.variant-controls {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: var(--spacing-md);
+}
+
+.variant-btn {
+	background: none;
+	border: none;
+	color: rgba(255, 255, 255, 0.7);
+	font-size: 0.75rem;
+	font-weight: 700;
+	letter-spacing: 1.5px;
+	cursor: pointer;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.4rem;
+	transition: color 0.3s ease;
+	text-transform: uppercase;
+	font-family: var(--font-primary);
+}
+
+.variant-btn:hover:not(:disabled) {
+	color: var(--color-white);
+}
+
+.variant-btn:disabled {
+	opacity: 0.4;
+	cursor: not-allowed;
+}
+
+.variant-btn .arrow {
+	font-size: 1.2rem;
+}
+
+.variant-divider {
+	width: 1px;
+	height: 20px;
+	background: rgba(255, 255, 255, 0.3);
+}
+
+.variant-loading-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: var(--spacing-sm);
+}
+
+.variant-loading-spinner {
+	font-size: 1.2rem;
+	animation: spin 1s linear infinite;
+}
+
+.variant-loading-text {
+	font-size: 0.65rem;
+	color: rgba(255, 255, 255, 0.6);
+	letter-spacing: 1px;
+}
+
+@keyframes spin {
+	to { 
+		transform: rotate(360deg); 
+	}
+}
+
+@media (max-width: 768px) {
+	:root {
+		--spacing-xl: 3rem;
+		--spacing-hero: 4rem;
+		--spacing-nav: 3rem;
+	}
+
+	.variant-index {
+		font-size: 2rem;
+	}
+
+	.variant-btn {
+		font-size: 0.65rem;
+	}
+}

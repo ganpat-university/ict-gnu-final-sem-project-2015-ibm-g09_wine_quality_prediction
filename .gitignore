@@ -1,0 +1,7 @@
+mocka/
+pixelshots/
+node_modules/
+.env
+__pycache__/
+build/
+.DS_Store

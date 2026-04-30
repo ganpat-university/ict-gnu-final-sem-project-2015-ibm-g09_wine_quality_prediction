@@ -1,0 +1,44 @@
+.about-section {
+  background-color: #0c0c0f;
+  padding: 100px 0;
+  color: white;
+}
+
+.about-container {
+  width: 85%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 60px;
+}
+
+.about-left {
+  flex: 1;
+}
+
+.about-left h1 {
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 25px;
+}
+
+.about-left p {
+  font-size: 18px;
+  line-height: 1.7;
+  color: #cfcfcf;
+  margin-bottom: 20px;
+}
+
+.about-right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.about-right img {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 12px;
+  object-fit: cover;
+}

@@ -1,0 +1,129 @@
+/* ===== WRAPPER ===== */
+
+.slider-wrapper {
+  width: 100%;
+  padding: 36px 0;
+}
+
+/* ===== TRACK ===== */
+
+.slider-track {
+  position: relative;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.214);
+  border-radius: 999px;
+  transition:
+    height 0.25s cubic-bezier(.2,.8,.2,1),
+    box-shadow 0.25s ease;
+
+  transform-origin: bottom center; /* 🔑 ADDED */
+}
+
+.slider-track.dragging {
+  height: 20px;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.18);
+
+  transform: translateY(-10px); /* 🔑 ADDED */
+}
+
+/* ===== FILL ===== */
+
+.slider-fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  height: 100%;
+  border-radius: 999px;
+  will-change: width;
+}
+
+/* ===== THUMB — CAPSULE (ALWAYS VISIBLE) ===== */
+
+.slider-thumb {
+  width: 40px;
+  height: 20px;
+  border-radius: 999px;
+  background: #ffffff;
+
+  transform: translateX(-50%);
+  transition:
+    height 0.5s cubic-bezier(.2,.8,.2,1),
+    transform 0.5s cubic-bezier(.2,.8,.2,1);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow:
+    0 2px 6px rgba(0,0,0,0.25);
+
+  will-change: transform, height;
+}
+
+/* ===== ACTIVE (TALLER CAPSULE) ===== */
+
+.slider-track.dragging .slider-thumb {
+  height: 40px;
+  width: 80px;
+}
+
+/* ===== LIQUID GLASS ENHANCEMENT ===== */
+
+.liquid-glass {
+  background: rgba(255, 255, 255, 0.914);
+  backdrop-filter: blur(6px) saturate(160%);
+  -webkit-backdrop-filter: blur(6px) saturate(160%);
+  box-shadow:
+    0 8px 20px rgba(0,0,0,0.22),
+    inset 0 0 0 0.5px rgba(255, 255, 255, 0.789);
+}
+
+/* Disable blur while dragging for performance */
+.liquid-glass.dragging {
+  border: 1.1px solid rgba(255, 255, 255, 0.453);
+  background: rgba(255, 255, 255, 0);
+  -webkit-backdrop-filter: blur(6px) saturate(100%);
+  box-shadow:
+    0 8px 20px rgba(0,0,0,0.22),
+    inset 0 0 0 0.5px rgba(255, 255, 255, 0.789);
+}
+
+/* ===== VALUE BUBBLE ===== */
+
+.slider-value {
+  position: absolute;
+  top: -40px;
+  font-size: 12px;
+  font-weight: 500;
+
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(6px) saturate(160%);
+  -webkit-backdrop-filter: blur(6px) saturate(160%);
+
+  padding: 3px 8px;
+  border-radius: 8px;
+
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+
+  opacity: 0;
+  transform: translateY(6px);
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+
+  pointer-events: none;
+}
+
+.slider-track.dragging .slider-value {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== REMOVE BLUE FOCUS RING ===== */
+
+.slider-thumb:focus,
+.slider-thumb:focus-visible,
+.slider-track:focus,
+.slider-track:focus-visible {
+  outline: none;
+  box-shadow: none;
+}

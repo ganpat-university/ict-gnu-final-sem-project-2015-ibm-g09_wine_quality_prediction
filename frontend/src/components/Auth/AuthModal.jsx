@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 import './AuthModal.css';
 import { X, Mail, Lock } from 'lucide-react';
 
@@ -11,21 +12,31 @@ const AuthModal = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   if (!isAuthModalOpen) return null;
+
+  const handleAuthResult = (user) => {
+    const adminEmails = import.meta.env.VITE_ADMIN_EMAIL ? import.meta.env.VITE_ADMIN_EMAIL.split(',').map(e => e.trim()) : [];
+    if (user && adminEmails.includes(user.email)) {
+      navigate('/admin');
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
     setLoading(true);
     try {
+      let result;
       if (isLogin) {
-        await login(email, password);
+        result = await login(email, password);
       } else {
-        await signup(email, password);
-        alert('Verification email sent! Please check your inbox.');
+        result = await signup(email, password);
+        // Removed blocking alert so user proceeds immediately
       }
       onClose();
+      if (result?.user) handleAuthResult(result.user);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -36,8 +47,9 @@ const AuthModal = () => {
   const handleSocialSignIn = async (providerFn) => {
     setError('');
     try {
-      await providerFn();
+      const result = await providerFn();
       onClose();
+      if (result?.user) handleAuthResult(result.user);
     } catch (err) {
       setError(err.message);
     }

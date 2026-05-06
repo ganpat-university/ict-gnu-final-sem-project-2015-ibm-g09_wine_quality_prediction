@@ -6,7 +6,7 @@ import { useAuth } from '../../context/AuthContext';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { user, logout, setAuthModalOpen } = useAuth();
+  const { user, isAdmin, logout, setAuthModalOpen } = useAuth();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -19,6 +19,9 @@ const Navbar = () => {
     ...(user ? [
       { name: 'Dashboard', path: '/dashboard' },
       { name: 'History', path: '/history' }
+    ] : []),
+    ...(isAdmin ? [
+      { name: 'Admin', path: '/admin' }
     ] : []),
   ];
 

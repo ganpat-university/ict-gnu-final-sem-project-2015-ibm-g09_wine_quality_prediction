@@ -47,7 +47,7 @@ function Predict() {
         ...(user ? { userId: user.uid } : {})
       };
 
-      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL || "https://wyne-backend.onrender.com"}/predict`, {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL || "http://localhost:8000"}/predict`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
@@ -70,7 +70,7 @@ function Predict() {
 
     } catch (err) {
       console.error("Prediction failed:", err);
-      setError("Prediction failed. Please check if the backend is live at https://wyne-backend.onrender.com");
+      setError(`Prediction failed. Please check if the backend is live at ${import.meta.env.VITE_API_BASE_URL || "http://localhost:8000"}`);
     }
 
     setLoading(false);

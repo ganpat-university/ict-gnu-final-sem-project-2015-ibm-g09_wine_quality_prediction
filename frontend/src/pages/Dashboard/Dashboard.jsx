@@ -32,7 +32,7 @@ const Dashboard = () => {
         const fetchHistory = async () => {
             if (!user) return;
             try {
-                const response = await fetch(`${import.meta.env.VITE_API_BASE_URL || "https://wyne-backend.onrender.com"}/history/${user.uid}`);
+                const response = await fetch(`${import.meta.env.VITE_API_BASE_URL || "http://localhost:8000"}/history/${user.uid}`);
                 if (!response.ok) throw new Error("Failed to fetch history");
                 const result = await response.json();
                 const history = result.history || [];
@@ -158,7 +158,7 @@ const Dashboard = () => {
                 if (batchData.length === 0) throw new Error("No valid data rows found in CSV. Ensure semicolon (;) delimiter and correct headers.");
 
                 // Call bulk predict API
-                const response = await fetch(`${import.meta.env.VITE_API_BASE_URL || "https://wyne-backend.onrender.com"}/predict_bulk`, {
+                const response = await fetch(`${import.meta.env.VITE_API_BASE_URL || "http://localhost:8000"}/predict_bulk`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(batchData)
@@ -170,7 +170,7 @@ const Dashboard = () => {
                 setCsvResults(result.results || []);
                 
                 // Refresh main history after bulk upload
-                const historyResponse = await fetch(`${import.meta.env.VITE_API_BASE_URL || "https://wyne-backend.onrender.com"}/history/${user.uid}`);
+                const historyResponse = await fetch(`${import.meta.env.VITE_API_BASE_URL || "http://localhost:8000"}/history/${user.uid}`);
                 if (historyResponse.ok) {
                     const historyResult = await historyResponse.json();
                     setData(historyResult.history || []);
@@ -235,7 +235,7 @@ const Dashboard = () => {
                     >
                         {error}
                         <div className="mt-2 text-xs opacity-70">
-                            Check if the backend is live at <a href="https://wyne-backend.onrender.com" target="_blank" rel="noreferrer" className="underline">https://wyne-backend.onrender.com</a>
+                            Check if the backend is live at <a href={import.meta.env.VITE_API_BASE_URL || "http://localhost:8000"} target="_blank" rel="noreferrer" className="underline">{import.meta.env.VITE_API_BASE_URL || "http://localhost:8000"}</a>
                         </div>
                     </motion.div>
                 )}

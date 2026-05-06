@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
+import axios from 'axios';
 import {
   onAuthStateChanged,
   signInWithPopup,
@@ -26,27 +27,48 @@ export const AuthProvider = ({ children }) => {
     return unsubscribe;
   }, []);
 
+  const logActivity = async (email, action) => {
+    try {
+      await axios.post(`${import.meta.env.VITE_API_BASE_URL}/log_activity`, {
+        email,
+        action
+      });
+    } catch (error) {
+      console.error("Failed to log activity:", error);
+    }
+  };
+
   const signup = async (email, password) => {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     await sendEmailVerification(userCredential.user);
+    await logActivity(email, 'signup');
     return userCredential;
   };
 
-  const login = (email, password) => {
-    return signInWithEmailAndPassword(auth, email, password);
+  const login = async (email, password) => {
+    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    await logActivity(email, 'login');
+    return userCredential;
   };
 
   const logout = () => {
     return signOut(auth);
   };
 
-  const signInWithGoogle = () => {
-    return signInWithPopup(auth, googleProvider);
+  const signInWithGoogle = async () => {
+    const result = await signInWithPopup(auth, googleProvider);
+    await logActivity(result.user.email, 'login_google');
+    return result;
   };
 
-  const signInWithApple = () => {
-    return signInWithPopup(auth, appleProvider);
+  const signInWithApple = async () => {
+    const result = await signInWithPopup(auth, appleProvider);
+    await logActivity(result.user.email, 'login_apple');
+    return result;
   };
+
+  const adminEmails = import.meta.env.VITE_ADMIN_EMAIL ? import.meta.env.VITE_ADMIN_EMAIL.split(',').map(e => e.trim()) : [];
+  const isAdmin = user && adminEmails.includes(user.email);
 
   const value = {
     user,
@@ -57,7 +79,8 @@ export const AuthProvider = ({ children }) => {
     signInWithApple,
     loading,
     isAuthModalOpen,
-    setAuthModalOpen
+    setAuthModalOpen,
+    isAdmin
   };
 
   return (

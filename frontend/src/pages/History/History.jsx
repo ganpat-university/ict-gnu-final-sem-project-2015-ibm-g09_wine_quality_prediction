@@ -20,7 +20,7 @@ function History() {
         const data = await res.json();
         setHistory(data.history || []);
       } catch (err) {
-        setError("Could not load history. Please check if the backend is live at https://wyne-backend.onrender.com");
+        setError(`Could not load history. Please check if the backend is live at ${import.meta.env.VITE_API_BASE_URL}`);
       } finally {
         setLoading(false);
       }

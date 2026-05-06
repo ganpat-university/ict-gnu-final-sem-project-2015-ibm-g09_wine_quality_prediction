@@ -8,7 +8,9 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 import Discover from "./pages/Discover/Discover";
 import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./components/Auth/ProtectedRoute";
+import AdminRoute from "./components/Auth/AdminRoute";
 import AuthModal from "./components/Auth/AuthModal";
+import AdminDashboard from "./pages/Admin/AdminDashboard";
 
 
 function App() {
@@ -54,6 +56,14 @@ function App() {
               <ProtectedRoute>
                 <Dashboard />
               </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin"
+            element={
+              <AdminRoute>
+                <AdminDashboard />
+              </AdminRoute>
             }
           />
         </Routes>

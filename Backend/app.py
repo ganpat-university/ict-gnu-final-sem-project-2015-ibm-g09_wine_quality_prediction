@@ -103,6 +103,8 @@ def predict_wine(data: WineFeatures):
         except Exception as e:
             print(f"Warning: Could not save to MongoDB: {e}")
 
+    return {"quality": result}
+
 @app.post("/predict_bulk")
 def predict_wine_bulk(data_list: list[WineFeatures]):
     results = []
@@ -165,6 +167,49 @@ def get_history(user_id: str):
             r["timestamp"] = r["timestamp"].strftime("%Y-%m-%d %H:%M:%S")
 
     return {"history": records}
+
+class ActivityLog(BaseModel):
+    email: str
+    action: str
+    timestamp: Optional[str] = None
+
+@app.post("/log_activity")
+def log_activity(data: ActivityLog):
+    if db is not None:
+        try:
+            db.activity_logs.insert_one({
+                "email": data.email,
+                "action": data.action,
+                "timestamp": datetime.utcnow()
+            })
+            return {"status": "success"}
+        except Exception as e:
+            print(f"Warning: Could not save activity log: {e}")
+            return {"status": "error", "message": str(e)}
+    return {"status": "error", "message": "Database not connected"}
+
+@app.get("/admin/logs")
+def get_admin_logs(admin_email: str):
+    admin_emails_env = os.environ.get("ADMIN_EMAIL", "admin@wyne.com")
+    admin_emails = [email.strip() for email in admin_emails_env.split(",")]
+    if admin_email not in admin_emails:
+        return {"logs": [], "error": "Unauthorized"}
+        
+    if db is None:
+        return {"logs": [], "error": "Database not connected"}
+
+    records = list(
+        db.activity_logs.find(
+            {},
+            {"_id": 0}
+        ).sort("timestamp", -1).limit(100)
+    )
+
+    for r in records:
+        if "timestamp" in r:
+            r["timestamp"] = r["timestamp"].strftime("%Y-%m-%d %H:%M:%S")
+
+    return {"logs": records}
 
 
 if __name__ == "__main__":

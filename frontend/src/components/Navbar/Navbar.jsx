@@ -15,7 +15,6 @@ const Navbar = () => {
   const navLinks = [
     { name: 'Home', path: '/' },
     { name: 'Predict', path: '/predict' },
-    { name: 'Discover', path: '/discover' },
     ...(user ? [
       { name: 'Dashboard', path: '/dashboard' },
       { name: 'History', path: '/history' }

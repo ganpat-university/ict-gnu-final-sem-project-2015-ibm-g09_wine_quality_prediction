@@ -13,7 +13,7 @@ const Footer = () => {
           <div className="footer-section">
             <h3 className="footer-title">WYNE</h3>
             <p className="footer-description">
-              Your AI-powered wine prediction and discovery platform.
+              Your AI-powered wine prediction platform.
             </p>
           </div>
 
@@ -23,7 +23,6 @@ const Footer = () => {
             <ul className="footer-links">
               <li><a href="#home">Home</a></li>
               <li><a href="#predict">Predict</a></li>
-              <li><a href="#discover">Discover</a></li>
               <li><a href="#about">About Us</a></li>
             </ul>
           </div>

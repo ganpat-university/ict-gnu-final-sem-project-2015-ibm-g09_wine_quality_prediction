@@ -5,7 +5,6 @@ import Homepage from "./pages/Homepage/Homepage";
 import Predict from "./pages/Predict/Predict";
 import History from "./pages/History/History";
 import Dashboard from "./pages/Dashboard/Dashboard";
-import Discover from "./pages/Discover/Discover";
 import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./components/Auth/ProtectedRoute";
 import AdminRoute from "./components/Auth/AdminRoute";
@@ -24,11 +23,6 @@ function App() {
           <Route
             path="/"
             element={<Homepage />}
-          />
-
-          <Route
-            path="/discover"
-            element={<Discover />}
           />
 
           {/* Predict Route - Protected */}
